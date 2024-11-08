@@ -24,29 +24,42 @@ def index():
 def generate_figure(request):
     selected_option = request.form.get('SelectVis')
 
-    #Pass Linear form parameters to a function
     if selected_option == 'linear':
+        #Fetch Generated Data
         data = generate_linear_data(request.form.get('slope'), request.form.get('intercept'))
+         # Create a Plotly figure
+        fig = px.scatter(data, x='Time', y='Value', title="Linear Graph")
+
 
     elif selected_option == 'random':
+        #Fetch Generated Data 
         data = generate_random_data(request.form.get('min'), request.form.get('max'))
+        # Create a Plotly figure
+        fig = px.scatter(data, x='Time', y='Value', title="Random Graph")
 
     else:
         return "Error occured in form submission"
-
-    df = data
-
-    # Create a Plotly figure
-    fig = px.scatter(df, x='Time', y='Value', title="Graph")
 
     # Convert the figure to JSON format
     graphJSON = json.dumps(fig, cls=utils.PlotlyJSONEncoder)
 
     return graphJSON
 
-def generate_linear_data():
+def generate_linear_data(slope, intercept):
     #Generate y = mt + c data
-    pass
+
+    #Generate time series
+    time_range = pd.date_range(start='2024-11-07', end='2024-11-07 23:59', freq='10min')
+
+    x_values = np.arange(0, 60*24, 10).tolist()
+
+    linear_values = [slope*x + intercept for x in x_values]
+
+    time_series_data = pd.DataFrame({'Time': x_values, 'Value': linear_values}, index = time_range)
+
+    print(time_series_data.head())
+    
+    return time_series_data
 
 def generate_random_data(minval, maxval):
     #Generate random data between min-max boundaries
@@ -54,6 +67,7 @@ def generate_random_data(minval, maxval):
     time_range = pd.date_range(start='2024-11-07', end='2024-11-07 23:59', freq='10min')
 
     random_values = np.random.randint(minval, maxval, size=len(time_range))
+
     time_series_data = pd.DataFrame({'Time': time_range, 'Value': random_values})
 
     print(time_series_data.head())
