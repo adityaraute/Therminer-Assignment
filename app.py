@@ -55,7 +55,7 @@ def generate_linear_data(slope, intercept):
 
     linear_values = [slope*x + intercept for x in x_values]
 
-    time_series_data = pd.DataFrame({'Time': x_values, 'Value': linear_values}, index = time_range)
+    time_series_data = pd.DataFrame({'Time': time_range, 'Value': linear_values})#, index = time_range)
 
     print(time_series_data.head())
     
