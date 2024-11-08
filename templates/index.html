@@ -1,19 +1,13 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <title>Therminer Assignment</title>
-</head>
-<body>
-  <h1>Data Analytics</h1>
+{% extends "base.html" %}
+{% block contentbody %}
 
-  <select>
-    <option>Draw a Linear graph</option>
-    <option>Draw a Random graph</option>
-  </select>
+<h1>Data Analytics</h1>
 
-  <button>Plot!</button>
-  {% block figure %}
-  No dashboard yet
-  {% endblock %}
-</body>
-</html>
+<select>
+  <option>Draw a Linear graph</option>
+  <option>Draw a Random graph</option>
+</select>
+
+<button>Plot!</button>
+
+{% endblock %}
