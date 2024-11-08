@@ -3,11 +3,16 @@
 
 <h1>Data Analytics</h1>
 
-<select>
-  <option>Draw a Linear graph</option>
-  <option>Draw a Random graph</option>
-</select>
+<form>
 
-<button>Plot!</button>
+  <div class="form-group">
+    <label for="SelectVis">Select Visualisation</label>
+    <select class="form-control" id="SelectVis">
+      <option>Draw a Linear graph</option>
+      <option>Draw a Random graph</option>
+    </select>
+  </div>
 
+  <button type="submit" class="btn btn-primary">Plot!</button>
+</form>
 {% endblock %}
