@@ -37,7 +37,7 @@ def generate_figure(request):
     df = data
 
     # Create a Plotly figure
-    fig = px.bar(df, x='Date', y='Value', title="Graph")
+    fig = px.scatter(df, x='Time', y='Value', title="Graph")
 
     # Convert the figure to JSON format
     graphJSON = json.dumps(fig, cls=utils.PlotlyJSONEncoder)
@@ -51,11 +51,10 @@ def generate_linear_data():
 def generate_random_data(minval, maxval):
     #Generate random data between min-max boundaries
 
-    date_range = pd.date_range(start='2024-11-07', end='2024-11-07 23:59', freq='10min')
+    time_range = pd.date_range(start='2024-11-07', end='2024-11-07 23:59', freq='10min')
 
-    random_values = np.random.randint(minval, maxval, size=len(date_range))
-    print(date_range, random_values)
-    time_series_data = pd.DataFrame({'Date': date_range, 'Value': random_values})
+    random_values = np.random.randint(minval, maxval, size=len(time_range))
+    time_series_data = pd.DataFrame({'Time': time_range, 'Value': random_values})
 
     print(time_series_data.head())
     
