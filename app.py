@@ -33,7 +33,7 @@ def generate_figure(request):
 
     elif selected_option == 'random':
         #Fetch Generated Data 
-        data = generate_random_data(request.form.get('min'), request.form.get('max'))
+        data = generate_random_data(float(request.form.get('min')), float(request.form.get('max')))
         # Create a Plotly figure
         fig = px.scatter(data, x='Time', y='Value', title="Random Graph")
 
