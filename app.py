@@ -66,7 +66,7 @@ def generate_random_data(minval, maxval):
 
     time_range = pd.date_range(start='2024-11-07', end='2024-11-07 23:59', freq='10min')
 
-    random_values = np.random.randint(minval, maxval, size=len(time_range))
+    random_values = np.random.uniform(minval, maxval, size=len(time_range))
 
     time_series_data = pd.DataFrame({'Time': time_range, 'Value': random_values})
 
