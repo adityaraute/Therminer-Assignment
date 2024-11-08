@@ -1,12 +1,19 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
+app.debug = True
 
-@app.route("/")
+@app.route("/", methods = ['GET', 'POST'])
 def hello():
-    return render_template('index.html')
+    parameter = ""
+    if request.method == 'POST':
+        parameter = request.form.get('SelectVis')
+        print(request.form.get('SelectVis'))
+    return render_template('index.html', params = parameter)
 
-if __name__ == "__main__":
-    app.run(debug = True)
 
+'''
+data = generate_report()
+return render_template("report.html", chart_data=data)
 
+'''

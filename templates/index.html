@@ -2,17 +2,45 @@
 {% block contentbody %}
 
 <h1>Data Analytics</h1>
+<p> {{params}}</p>
+<div class = "container">
+  <form method = "POST" id="main-form">
 
-<form>
+    <div class="form-group">
+      <label for="SelectVis">Select Visualisation</label>
+      <select class="form-control" id="SelectVis" name = "SelectVis" required>
+        <option selected disabled> Select an option </option>
+        <option value = 'linear'>Draw a Linear graph</option>
+        <option value = 'random'>Draw a Random graph</option>
+      </select>
+    </div>
 
-  <div class="form-group">
-    <label for="SelectVis">Select Visualisation</label>
-    <select class="form-control" id="SelectVis">
-      <option>Draw a Linear graph</option>
-      <option>Draw a Random graph</option>
-    </select>
-  </div>
+    {# Linear Graph fields #}
+    <div class="form-group d-none" id ='linear-fields'>
+      <label for="slope" class="col-form-label">Slope (Parameter a)</label>
+      <input id="slope" name="slope" type="number" class="form-control">
 
-  <button type="submit" class="btn btn-primary">Plot!</button>
-</form>
+      <label for="intercept" class="col-form-label">Y-intercept (Parameter b)</label>
+      <input id="intercept" name="intercept" type="number" class="form-control">
+    </div>
+
+    {# Random Graph fields #}
+    <div class="form-group d-none" id ='random-fields'>
+      <label for="min" class="col-form-label">Minimum Value</label>
+      <input id="min" name="min" type="number" class="form-control">
+
+      <label for="max" class="col-form-label">Maximum Value</label>
+      <input id="max" name="max" type="number" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Plot!</button>
+  </form>
+
+
+  {% if params %}
+  <p>Selected Option: {{ params }}!</p>
+{% endif %}
+
+
+</div>
 {% endblock %}
