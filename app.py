@@ -26,7 +26,7 @@ def generate_figure(request):
 
     if selected_option == 'linear':
         #Fetch Generated Data
-        data = generate_linear_data(request.form.get('slope'), request.form.get('intercept'))
+        data = generate_linear_data(float(request.form.get('slope')), float(request.form.get('intercept')))
          # Create a Plotly figure
         fig = px.scatter(data, x='Time', y='Value', title="Linear Graph")
 
