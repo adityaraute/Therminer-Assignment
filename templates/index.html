@@ -2,7 +2,6 @@
 {% block contentbody %}
 
 <h1>Data Analytics</h1>
-<p> {{params}}</p>
 <div class = "container">
   <form method = "POST" id="main-form">
 
@@ -35,11 +34,19 @@
 
     <button type="submit" class="btn btn-primary">Plot!</button>
   </form>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
+  <h1>Plotly Graph Example</h1>
+    <div id="chart" style="width: 100%; height: 500px;" class = "chart">
 
   {% if params %}
-  <p>Selected Option: {{ params }}!</p>
-{% endif %}
+
+    <script type="text/javascript">
+        var graphs = {{ params | safe}};
+        Plotly.newPlot('chart', graphs.data, graphs.layout);
+    </script>
+  {% endif %}
+</div>
 
 
 </div>
