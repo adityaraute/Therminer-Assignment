@@ -56,7 +56,7 @@
 
     {% if dashboard %}
 
-    <div class="container">
+    <div class="container border border-3 mt-5 mb-5">
       <h6 class="text-center underline display-6">Plotly Visualisation</h6>
       <div id="chart" style="width: 100%; height: 500px;" class = "chart"></div>
           
@@ -69,6 +69,6 @@
         Plotly.newPlot('chart', graphs.data, graphs.layout);
       </script>
     </div>
-    
+
     {% endif %}
 {% endblock %}
