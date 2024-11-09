@@ -3,6 +3,7 @@
 
 <h1>Data Analytics</h1>
 <div class = "container">
+  
   <form method = "POST" id="main-form">
     
     {# Dropdown #}
@@ -48,21 +49,23 @@
       <button type="submit" class="btn btn-primary">Plot!</button>
     </div>
   </form>
+
+  
+  {# Add scripts #}
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
   <h6>Plotly Graph Example</h6>
   <div id="chart" style="width: 100%; height: 500px;" class = "chart">
-      {% if params %}
+      
+    {% if params %}
+      <script type="text/javascript">
+        // Fetch JSON through parameters
+        var graphs = {{ params | safe}};
 
-        <script type="text/javascript">
-
-          // Fetch JSON through parameters
-            var graphs = {{ params | safe}};
-
-          // Plot the visualisation in chart div
-            Plotly.newPlot('chart', graphs.data, graphs.layout);
-        </script>
-      {% endif %}
+        // Plot the visualisation in chart div
+        Plotly.newPlot('chart', graphs.data, graphs.layout);
+      </script>
+    {% endif %}
   </div>
 </div>
 
