@@ -9,9 +9,9 @@
     {# Dropdown #}
         <div class="form-group row justify-content-center">
           <div class="col-md-6">
-          <label for="SelectVis">Select Visualisation</label>
+          <label for="SelectVis">Select Visualisation*</label>
           <select class="form-control" id="SelectVis" name = "SelectVis" required>
-            <option selected disabled> Select an option </option>
+            <option selected disabled value=""> Select an option </option>
             <option value = 'linear'>Draw a Linear graph</option>
             <option value = 'random'>Draw a Random graph</option>
           </select>
@@ -21,12 +21,12 @@
     {# Linear Graph fields #}
     <div class="form-group d-none row justify-content-center" id ='linear-fields'>
       <div class="col-md-3">
-        <label for="slope" class="col-form-label">Slope (Parameter a)</label>
+        <label for="slope" class="col-form-label">Slope (Parameter a)*</label>
         <input id="slope" name="slope" type="number" step="any" class="form-control">
       </div>
 
       <div class="col-md-3">
-        <label for="intercept" class="col-form-label">Y-intercept (Parameter b)</label>
+        <label for="intercept" class="col-form-label">Y-intercept (Parameter b)*</label>
         <input id="intercept" name="intercept" type="number" step="any" class="form-control">
       </div>
     </div>
@@ -34,15 +34,17 @@
     {# Random Graph fields #}
     <div class="form-group d-none row justify-content-center" id ='random-fields'>
       <div class="col-md-3">
-        <label for="min" class="col-form-label">Minimum Value</label>
+        <label for="min" class="col-form-label">Minimum Value*</label>
         <input id="min" name="min" type="number" step="any" class="form-control">
       </div>
       
       <div class="col-md-3">
-        <label for="max" class="col-form-label">Maximum Value</label>
+        <label for="max" class="col-form-label">Maximum Value*</label>
         <input id="max" name="max" type="number" step="any" class="form-control">
       </div>
     </div>
+
+    <p class="error-message text-center text-danger mt-2" id="form-error"></p>
 
     {# Submit Button #}
     <div class="form-group row justify-content-center">
