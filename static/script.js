@@ -1,6 +1,6 @@
+// Form field display logic
 (function() {
     'use strict'
-    // Form field display logic
     var linearFields = document.getElementById('linear-fields');
     var randomFields = document.getElementById('random-fields');
     var selectGroup = document.getElementById('main-form');
@@ -68,5 +68,5 @@
         this.submit(); // This will submit the form programmatically
       };
     
-    })();
-    
+})();
+  
