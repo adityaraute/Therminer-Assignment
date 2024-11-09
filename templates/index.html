@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% block contentbody %}
 
-<div class = "container">
-  <h1>Data Analytics</h1>  
-  <form method = "POST" id="main-form">
+<h1 class="text-center mb-5">Data Analytics</h1>  
+
+<div class = "row">
+  <div class="col-md-2"></div>
+  <form method = "POST" id="main-form" class = "container bg-light col-md-7 py-3 border border-5">
     
     {# Dropdown #}
         <div class="form-group row justify-content-center">
@@ -52,23 +54,24 @@
       </div>
     </div>
   </form>
+  <div class="col-md-2"></div>
 </div>
 
-    {% if dashboard %}
+{% if dashboard %}
 
-    <div class="container border border-3 mt-5 mb-5">
-      <h6 class="text-center underline display-6">Plotly Visualisation</h6>
-      <div id="chart" style="width: 100%; height: 500px;" class = "chart"></div>
+<div class="container border border-3 my-5">
+  <h6 class="text-center underline display-6">Plotly Visualisation</h6>
+  <div id="chart" style="width: 100%; height: 500px;" class = "chart"></div>
           
-      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-      <script type="text/javascript">
-        // Fetch JSON through parameters
-        var graphs = {{ dashboard | safe}};
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script type="text/javascript">
+    // Fetch JSON through parameters
+    var graphs = {{ dashboard | safe}};
 
-        // Plot the visualisation in chart div
-        Plotly.newPlot('chart', graphs.data, graphs.layout);
-      </script>
-    </div>
+    // Plot the visualisation in chart div
+    Plotly.newPlot('chart', graphs.data, graphs.layout);
+    </script>
+</div>
 
-    {% endif %}
+{% endif %}
 {% endblock %}
