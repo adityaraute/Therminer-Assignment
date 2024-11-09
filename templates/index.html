@@ -61,16 +61,24 @@
 
 <div class="container border border-3 my-5">
   <h6 class="text-center underline display-6">Plotly Visualisation</h6>
-  <div id="chart" style="width: 100%; height: 500px;" class = "chart"></div>
-          
+  <div id="chart" style="width: 100%; height: 500px;" class = "chart"></div>  
+  
+  {# Scripts #}
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script type="text/javascript">
     // Fetch JSON through parameters
     var graphs = {{ dashboard | safe}};
-
     // Plot the visualisation in chart div
     Plotly.newPlot('chart', graphs.data, graphs.layout);
+
+    function showinfo() {
+      strElement = `<p> Minimum value of the dataset: `+ Math.min(...graphs.data[0].y) + `. <br /> Maximum value of the dataset: `+  Math.max(...graphs.data[0].y) + `</p>`
+      document.getElementById('more-info').innerHTML+= strElement
+    }
     </script>
+</div>
+<div class="container" id="more-info">
+  <button onclick="showinfo()" class="btn btn-success">Show Min/Max</button>
 </div>
 
 {% endif %}
