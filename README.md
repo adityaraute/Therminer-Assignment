@@ -10,7 +10,7 @@ To create a Python - Flask web app with a data analytics page.
 
 ### Features
 
-= Flask repository creation
+- Flask repository creation
 - Form for Linear and Random curve data inputs
 - Dataset generation based on form inputs
 - Plotly Express visualisation based on generated dataet
