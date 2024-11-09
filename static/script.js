@@ -55,10 +55,9 @@
             return; // Stop submission if validation fails
           }
 
-          if(minVal >= maxVal)
+          if(parseFloat(minVal) >= parseFloat(maxVal))
           {
             document.getElementById('form-error').innerText = "Minimum value must be smaller than Maximum value!";
-            minVal.focus(); 
             return; // Stop submission if validation fails
           }
         }
