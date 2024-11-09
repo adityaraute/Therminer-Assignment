@@ -40,8 +40,10 @@
           var intercept = document.getElementById('intercept').value;
 
           if(slope == '' || intercept == '')
+          {
             document.getElementById('form-error').innerText = "Please fill all required fields";
             return; // Stop submission if validation fails
+          }
         }
 
         else if (selectValue == "random"){
