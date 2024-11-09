@@ -61,10 +61,10 @@
   <h6>Plotly Graph Example</h6>
   <div id="chart" style="width: 100%; height: 500px;" class = "chart">
       
-    {% if params %}
+    {% if dashboard %}
       <script type="text/javascript">
         // Fetch JSON through parameters
-        var graphs = {{ params | safe}};
+        var graphs = {{ dashboard | safe}};
 
         // Plot the visualisation in chart div
         Plotly.newPlot('chart', graphs.data, graphs.layout);

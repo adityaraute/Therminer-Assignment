@@ -1,23 +1,35 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, session
 import pandas as pd
 import plotly.express as px
 from plotly import utils
 import json
 import numpy as np
+from flask_session import Session
+
+
 
 #App config
 app = Flask(__name__)
 app.debug = True
+app.config['SESSION_TYPE'] = 'filesystem'  
+app.config['SECRET_KEY'] = 'abcd123'
+Session(app)
 
 #Routing
 @app.route("/", methods = ['GET', 'POST'])
 def index():
-    parameter = None
+    # parameter = None
 
     if request.method == 'POST':
         parameter = generate_figure(request)
+        session['parameter'] = parameter
+        return redirect(url_for('index'))
 
-    return render_template('index.html', params = parameter)
+    #use Session to prevent dashboard from appearing upon refresh - assisted by Perplexity AI
+    parameter = session.get('parameter')
+    session.pop('parameter', None)
+    print(session)
+    return render_template('index.html', dashboard=parameter)
 
 
 #Ancillary functions
@@ -68,8 +80,6 @@ def generate_linear_data(slope, intercept):
     linear_values = [slope*x + intercept for x in x_values]
 
     time_series_data = pd.DataFrame({'Time': time_range, 'Value': linear_values})#, index = time_range)
-
-    print(time_series_data.head())
     
     return time_series_data
 
@@ -81,8 +91,6 @@ def generate_random_data(minval, maxval):
     random_values = np.random.uniform(minval, maxval, size=len(time_range))
 
     time_series_data = pd.DataFrame({'Time': time_range, 'Value': random_values})
-
-    print(time_series_data.head())
     
     return time_series_data
 
