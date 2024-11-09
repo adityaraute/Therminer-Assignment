@@ -33,9 +33,17 @@ def generate_figure(request):
 
     elif selected_option == 'random':
         #Fetch Generated Data 
-        data = generate_random_data(float(request.form.get('min')), float(request.form.get('max')))
+        minVal = float(request.form.get('min'))
+        maxVal = float(request.form.get('max'))
+
+        data = generate_random_data(minVal, maxVal)
         # Create a Plotly figure
         fig = px.scatter(data, x='Time', y='Value', title="Random Graph")
+
+        # Ensure y-axis starts from 0 wherever appropriate
+        if (minVal > 0 and maxVal > 0):
+            fig.update_yaxes([0,None])
+
 
     else:
         return "Error occured in form submission"
