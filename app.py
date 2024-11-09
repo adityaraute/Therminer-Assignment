@@ -28,7 +28,6 @@ def index():
     #use Session to prevent dashboard from appearing upon refresh - assisted by Perplexity AI
     parameter = session.get('parameter')
     session.pop('parameter', None)
-    print(session)
     return render_template('index.html', dashboard=parameter)
 
 
@@ -59,7 +58,6 @@ def generate_figure(request):
         # Ensure y-axis starts from 0 wherever appropriate
         if (minVal > 0 and maxVal > 0):
             fig.update_yaxes(range = [0,None])
-
 
     else:
         return "Error occured in form submission"
