@@ -5,6 +5,7 @@
 <div class = "container">
   <form method = "POST" id="main-form">
 
+    {# Dropdown #}
     <div class="form-group">
       <label for="SelectVis">Select Visualisation</label>
       <select class="form-control" id="SelectVis" name = "SelectVis" required>
@@ -32,17 +33,22 @@
       <input id="max" name="max" type="number" step="any" class="form-control">
     </div>
 
+    {# Submit Button #}
     <button type="submit" class="btn btn-primary">Plot!</button>
   </form>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-  <h1>Plotly Graph Example</h1>
+  <h6>Plotly Graph Example</h6>
     <div id="chart" style="width: 100%; height: 500px;" class = "chart">
 
   {% if params %}
 
     <script type="text/javascript">
+
+      // Fetch JSON through parameters
         var graphs = {{ params | safe}};
+
+      // Plot the visualisation in chart div
         Plotly.newPlot('chart', graphs.data, graphs.layout);
     </script>
   {% endif %}
