@@ -44,7 +44,7 @@ def generate_figure(request):
         data = generate_linear_data(slope, intercept)
 
         # Create a Plotly figure
-        fig = px.line(data, x='Time', y='Value', title="Linear Graph", markers = True,  color_discrete_sequence = ['#410292'])
+        fig = px.line(data, x='Time', y='Value', title="Linear Curve Graph", markers = True,  color_discrete_sequence = ['#410292'])
 
     # If random graph is selected
     elif selected_option == 'random':
@@ -54,7 +54,7 @@ def generate_figure(request):
         data = generate_random_data(minVal, maxVal)
 
         # Create a Plotly figure
-        fig = px.line(data, x='Time', y='Value', title="Random Graph", markers = True, color_discrete_sequence = ['#a62910'])
+        fig = px.line(data, x='Time', y='Value', title="Random Curve Graph", markers = True, color_discrete_sequence = ['#a62910'])
 
         # Ensure y-axis starts from 0 wherever appropriate
         if (minVal > 0 and maxVal > 0):
