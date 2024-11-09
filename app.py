@@ -24,25 +24,29 @@ def index():
 def generate_figure(request):
     selected_option = request.form.get('SelectVis')
 
+    #If Linear graph is selected
     if selected_option == 'linear':
         #Fetch Generated Data
-        data = generate_linear_data(float(request.form.get('slope')), float(request.form.get('intercept')))
+        slope = float(request.form.get('slope'))
+        intercept = float(request.form.get('intercept'))
+        data = generate_linear_data(slope, intercept)
+
         # Create a Plotly figure
-        fig = px.scatter(data, x='Time', y='Value', title="Linear Graph")
+        fig = px.line(data, x='Time', y='Value', title="Linear Graph", markers = True)
 
-
+    # If random graph is selected
     elif selected_option == 'random':
         #Fetch Generated Data 
         minVal = float(request.form.get('min'))
         maxVal = float(request.form.get('max'))
-
         data = generate_random_data(minVal, maxVal)
+
         # Create a Plotly figure
-        fig = px.scatter(data, x='Time', y='Value', title="Random Graph")
+        fig = px.line(data, x='Time', y='Value', title="Random Graph", markers = True)
 
         # Ensure y-axis starts from 0 wherever appropriate
         if (minVal > 0 and maxVal > 0):
-            fig.update_yaxes([0,None])
+            fig.update_yaxes(range = [0,None])
 
 
     else:
