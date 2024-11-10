@@ -70,3 +70,15 @@
     
 })();
   
+
+function showinfo(el) {
+  if(el.innerText == 'View More Information'){
+    el.innerText = "Hide Below Information";
+    document.getElementById('more-info-table').classList.remove("d-none");
+
+  }
+  else{
+    el.innerText = 'View More Information';
+    document.getElementById('more-info-table').classList.add("d-none");
+  }
+}
