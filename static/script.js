@@ -75,10 +75,13 @@ function showinfo(el) {
   if(el.innerText == 'View More Information'){
     el.innerText = "Hide Below Information";
     document.getElementById('more-info-table').classList.remove("d-none");
+    document.getElementById('pred_graph').classList.remove("d-none");
+    Plotly.Plots.resize('chart2');
 
   }
   else{
     el.innerText = 'View More Information';
     document.getElementById('more-info-table').classList.add("d-none");
+    document.getElementById('pred_graph').classList.add("d-none");
   }
 }
