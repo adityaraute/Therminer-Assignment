@@ -77,20 +77,21 @@
     </script>
 </div>
 <div class="container" id="more-info">
-  <button onclick="showinfo()" class="btn btn-success">Show More Information</button>
-
-  {% if other %}
-
-  <table class="table table-success table-striped table-sm d-none" id = "more-info-table">
-    {% for key,value in other.items() %}
-      <tr>
-          <td>{{ key }}</td>
-          <td>{{ value }}</td>
-      </tr>
-    {% endfor %}
-  </table>
-
-  {% endif %}
+  <div class="row justify-content-center">
+    <button onclick="showinfo()" class="btn btn-success col-2">Show More Information</button>
+  </div>
+    {% if other %}
+  <div class="row justify-content-center">
+    <table class="table table-success table-striped table-sm d-none col-4 w-25" id = "more-info-table">
+      {% for key,value in other.items() %}
+        <tr>
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </div>
 
 </div>
 
