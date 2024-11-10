@@ -95,5 +95,5 @@ def generate_random_data(minval, maxval):
 def find_other_info(values):
     other_info = {}
     other_info['minimum'], other_info['maximum'] = round(min(values), 3), round(max(values), 3)
-    other_info['median'], other_info['mean'] = round(statistics.median(values)), round(statistics.mean(values))
+    other_info['median'], other_info['mean'] = round(statistics.median(values), 3), round(statistics.mean(values), 3)
     return other_info
