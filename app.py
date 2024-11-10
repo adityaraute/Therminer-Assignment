@@ -5,7 +5,7 @@ from plotly import utils
 import json
 import numpy as np
 from flask_session import Session
-
+import statistics
 
 
 #App config
@@ -21,26 +21,27 @@ def index():
     # parameter = None
 
     if request.method == 'POST':
-        parameter = generate_figure(request)
-        session['parameter'] = parameter
+        parameter, other_info = generate_figure(request)
+        session['parameter'], session['other_info'] = parameter, other_info
         return redirect(url_for('index'))
 
     #use Session to prevent dashboard from appearing upon refresh - assisted by Perplexity AI
-    parameter = session.get('parameter')
+    parameter, other_info = session.get('parameter'), session.get('other_info')
     session.pop('parameter', None)
-    return render_template('index.html', dashboard=parameter)
+    session.pop('other_info', None)
+    return render_template('index.html', dashboard=parameter, other = other_info)
 
 
 #Ancillary functions
 def generate_figure(request):
     selected_option = request.form.get('SelectVis')
-
+    other = None
     #If Linear graph is selected
     if selected_option == 'linear':
         #Fetch Generated Data
         slope = float(request.form.get('slope'))
         intercept = float(request.form.get('intercept'))
-        data = generate_linear_data(slope, intercept)
+        data, other = generate_linear_data(slope, intercept)
 
         # Create a Plotly figure
         fig = px.line(data, x='Time', y='Value', title="Linear Curve Graph", markers = True,  color_discrete_sequence = ['#410292'])
@@ -50,22 +51,20 @@ def generate_figure(request):
         #Fetch Generated Data 
         minVal = float(request.form.get('min'))
         maxVal = float(request.form.get('max'))
-        data = generate_random_data(minVal, maxVal)
+        data, other = generate_random_data(minVal, maxVal)
 
         # Create a Plotly figure
         fig = px.line(data, x='Time', y='Value', title="Random Curve Graph", markers = True, color_discrete_sequence = ['#a62910'])
 
-        # Ensure y-axis starts from 0 wherever appropriate
-        if (minVal > 0 and maxVal > 0):
-            fig.update_yaxes(range = [0,None])
+        # Ensure y-axis includes 0 wherever appropriate - REMOVE THIS
+        fig = fig.update_yaxes(rangemode = 'tozero')
 
     else:
         return "Error occured in form submission"
 
     # Convert the figure to JSON format
     graphJSON = json.dumps(fig, cls=utils.PlotlyJSONEncoder)
-
-    return graphJSON
+    return graphJSON, other
 
 def generate_linear_data(slope, intercept):
     #Generate y = mt + c data
@@ -77,9 +76,11 @@ def generate_linear_data(slope, intercept):
 
     linear_values = [slope*x + intercept for x in x_values]
 
-    time_series_data = pd.DataFrame({'Time': time_range, 'Value': linear_values})#, index = time_range)
+    time_series_data = pd.DataFrame({'Time': time_range, 'Value': linear_values})
     
-    return time_series_data
+    other_info = find_other_info(linear_values)
+    
+    return time_series_data, other_info
 
 def generate_random_data(minval, maxval):
     #Generate random data between min-max boundaries
@@ -89,6 +90,13 @@ def generate_random_data(minval, maxval):
     random_values = np.random.uniform(minval, maxval, size=len(time_range))
 
     time_series_data = pd.DataFrame({'Time': time_range, 'Value': random_values})
-    
-    return time_series_data
 
+    other_info = find_other_info(list(random_values))
+    
+    return time_series_data, other_info
+
+def find_other_info(values):
+    other_info = {}
+    other_info['minimum'], other_info['maximum'] = min(values), max(values)
+    other_info['median'], other_info['mean'] = statistics.median(values), statistics.mean(values)
+    return other_info
