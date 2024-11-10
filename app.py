@@ -122,8 +122,7 @@ def find_other_info(values):
 
 def regressCompute(df):
 
-    # Fit Auto ARIMA model - Assisted by Perplexity AI
-    # Fit ARIMA model
+    # Fit ARIMA model - Assisted by Perplexity AI
     model = ARIMA(df['Value'], order=(3, 0, 3))  
     model_fit = model.fit()
 
@@ -133,6 +132,7 @@ def regressCompute(df):
     # Generate Forecast DF
     time_range = pd.date_range(start='2024-11-11', end='2024-11-11 06:00', freq='10min')
 
+    # Create a new DataFrame consisting of all curves
     forecast_df = pd.DataFrame({'Time': time_range, 'Predicted Value': forecast.predicted_mean, "Lower Limit": forecast.conf_int()['lower Value'], "Upper Limit": forecast.conf_int()['upper Value']})
 
     forecast_df = forecast_df.melt(id_vars=['Time'], value_vars=['Predicted Value', 'Lower Limit', 'Upper Limit'], ignore_index=False, var_name="Type", value_name="Value")
