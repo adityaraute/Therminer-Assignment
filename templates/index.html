@@ -72,17 +72,16 @@
     Plotly.newPlot('chart', graphs.data, graphs.layout);
 
     function showinfo() {
-      strElement = `<p> Minimum value of the dataset: `+ Math.min(...graphs.data[0].y) + `. <br /> Maximum value of the dataset: `+  Math.max(...graphs.data[0].y) + `</p>`
-      document.getElementById('more-info').innerHTML+= strElement
+      document.getElementById('more-info-table').classList.toggle("d-none");
     }
     </script>
 </div>
 <div class="container" id="more-info">
-  <button onclick="showinfo()" class="btn btn-success">Show Min/Max</button>
+  <button onclick="showinfo()" class="btn btn-success">Show More Information</button>
 
   {% if other %}
 
-  <table class="table table-success table-striped table-sm">
+  <table class="table table-success table-striped table-sm d-none" id = "more-info-table">
     {% for key,value in other.items() %}
       <tr>
           <td>{{ key }}</td>
