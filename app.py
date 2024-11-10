@@ -56,9 +56,6 @@ def generate_figure(request):
         # Create a Plotly figure
         fig = px.line(data, x='Time', y='Value', title="Random Curve Graph", markers = True, color_discrete_sequence = ['#a62910'])
 
-        # Ensure y-axis includes 0 wherever appropriate - REMOVE THIS
-        fig = fig.update_yaxes(rangemode = 'tozero')
-
     else:
         return "Error occured in form submission"
 
