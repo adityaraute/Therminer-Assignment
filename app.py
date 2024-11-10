@@ -143,3 +143,7 @@ def regressCompute(df):
 
     return forecast_df
 
+@app.after_request
+def add_header(response):
+    response.cache_control.no_store = True
+    return response
