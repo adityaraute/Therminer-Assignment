@@ -8,7 +8,6 @@ import numpy as np
 from flask_session import Session
 import statistics
 from sklearn.linear_model import LinearRegression
-# from pmdarima import auto_arima
 from statsmodels.tsa.arima.model import ARIMA
 
 
@@ -41,6 +40,7 @@ def index():
 def generate_figure(request):
     selected_option = request.form.get('SelectVis')
     other = None
+
     #If Linear graph is selected
     if selected_option == 'linear':
         #Fetch Generated Data
