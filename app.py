@@ -51,6 +51,7 @@ def generate_figure(request):
         # Create a Plotly figure
         fig = px.line(data, x='Time', y='Value', title="Linear Curve Graph", markers = True,  color_discrete_sequence = ['#410292'])
 
+        #Fetch the prediction dataframe
         r = regressCompute(data)
         fig2 = px.line(r, x='Time', y='Value', title="Linear Prediction Curve (Beta)", markers = True, color = 'Type', color_discrete_sequence = ['#410292', '#54ee54', '#bbbbbb', '#999999'])
 
@@ -65,6 +66,7 @@ def generate_figure(request):
         # Create a Plotly figure
         fig = px.line(data, x='Time', y='Value', title="Random Curve Graph", markers = True, color_discrete_sequence = ['#a62910'])
 
+        #Fetch the prediction dataframe
         r = regressCompute(data)
         fig2 = px.line(r, x='Time', y='Value', title="Random Prediction Curve (Beta)", markers = True, color = 'Type', color_discrete_sequence = ['#a62910', '#54ee54', '#bbbbbb', '#999999'])
 
@@ -142,8 +144,3 @@ def regressCompute(df):
     forecast_df = pd.concat([df, forecast_df], sort= False)
 
     return forecast_df
-
-@app.after_request
-def add_header(response):
-    response.cache_control.no_store = True
-    return response
