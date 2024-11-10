@@ -10,6 +10,18 @@ To create a Python - Flask web app with a data analytics page.
 
 ### Features
 
+v0.2.0
+- Display Median and Mean values of the generated dataset
+- Value Forecast for the next 6 hours for the graph (Beta)
+- Confidence interval for the forecast graph
+- Plotly visualisation displaying forecast values and confidence interval values
+- Form fields flushed after Back button
+
+*Scope for improvement*
+- Accuracy of the forecasting model for both linear and random graphs is poor
+- Webpage could be made more responsive for mobile devices
+
+v0.1.0
 - Flask repository creation
 - Form for Linear and Random curve data inputs
 - Dataset generation based on form inputs
