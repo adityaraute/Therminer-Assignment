@@ -18,7 +18,6 @@ Session(app)
 #Routing
 @app.route("/", methods = ['GET', 'POST'])
 def index():
-    # parameter = None
 
     if request.method == 'POST':
         parameter, other_info = generate_figure(request)
@@ -75,6 +74,7 @@ def generate_linear_data(slope, intercept):
 
     time_series_data = pd.DataFrame({'Time': time_range, 'Value': linear_values})
     
+    # Fetch other info parameters and values
     other_info = find_other_info(linear_values)
     
     return time_series_data, other_info
@@ -88,12 +88,17 @@ def generate_random_data(minval, maxval):
 
     time_series_data = pd.DataFrame({'Time': time_range, 'Value': random_values})
 
+    # Pass numpy.ndarray as a list for processing of other info
     other_info = find_other_info(list(random_values))
     
     return time_series_data, other_info
 
 def find_other_info(values):
+
+    # Create  a dictionary for other info, and send calculated values to the route
     other_info = {}
+
+    #Round values to 3 decimal places for presentation
     other_info['Minimum value'], other_info['Maximum Value'] = round(min(values), 3), round(max(values), 3)
     other_info['Median of the data'], other_info['Mean of the data'] = round(statistics.median(values), 3), round(statistics.mean(values), 3)
     return other_info
