@@ -70,14 +70,21 @@
     
 })();
   
+// Hide the new graph onload 
+//(Source: https://community.plotly.com/t/displaying-a-hidden-div-changes-the-layout/30072/2)
+(function(){
+  try{
+    document.getElementById('pred_graph').classList.add("d-none");
+  }
+  catch(e){}
+})();
 
+// Onclick function for View More Information
 function showinfo(el) {
   if(el.innerText == 'View More Information'){
     el.innerText = "Hide Below Information";
     document.getElementById('more-info-table').classList.remove("d-none");
     document.getElementById('pred_graph').classList.remove("d-none");
-    Plotly.Plots.resize('chart2');
-
   }
   else{
     el.innerText = 'View More Information';
