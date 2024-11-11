@@ -53,6 +53,13 @@ def generate_figure(request):
         #Fetch the prediction dataframe
         r = regressCompute(data)
         fig2 = px.line(r, x='Time', y='Value', title="Linear Prediction Curve (Beta)", markers = True, color = 'Type', color_discrete_sequence = ['#410292', '#54ee54', '#bbbbbb', '#999999'])
+        fig2.update_layout(legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=-0.5,
+            xanchor="left",
+            x=0
+        ))
 
 
     # If random graph is selected
@@ -68,6 +75,13 @@ def generate_figure(request):
         #Fetch the prediction dataframe
         r = regressCompute(data)
         fig2 = px.line(r, x='Time', y='Value', title="Random Prediction Curve (Beta)", markers = True, color = 'Type', color_discrete_sequence = ['#a62910', '#54ee54', '#bbbbbb', '#999999'])
+        fig2.update_layout(legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=-0.5,
+            xanchor="left",
+            x=0
+        ))
 
     else:
         return "Error occured in form submission"
