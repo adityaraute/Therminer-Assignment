@@ -7,7 +7,6 @@ import json
 import numpy as np
 from flask_session import Session
 import statistics
-from sklearn.linear_model import LinearRegression
 from statsmodels.tsa.arima.model import ARIMA
 
 
