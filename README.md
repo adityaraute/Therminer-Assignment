@@ -10,6 +10,13 @@ To create a Python - Flask web app with a data analytics page.
 
 ### Features
 
+
+###### v0.3.0
+
+- Display Count of observations and Standard Deviation values of the generated dataset
+- Make the entire UI responsive enough for mobile usage
+- Fix the `requirements.txt` file
+
 ###### v0.2.0
 - Display Median and Mean values of the generated dataset
 - Value Forecast for the next 6 hours for the graph (Beta)
