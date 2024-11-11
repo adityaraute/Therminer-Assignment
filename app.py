@@ -116,10 +116,10 @@ def find_other_info(values):
     # Create  a dictionary for other info, and send calculated values to the route
     other_info = {}
 
-    #Round values to 3 decimal places for presentation
-    other_info['Minimum value'], other_info['Maximum Value'] = round(min(values), 3), round(max(values), 3)
-    other_info['Median of the data'], other_info['Mean of the data'] = round(statistics.median(values), 3), round(statistics.mean(values), 3)
-    
+    #Calculate metrics and round their values to 3 decimal places
+    other_info['No. of data Points'], other_info['Minimum Value'], other_info['Maximum Value'] = int(len(values)), round(min(values), 3), round(max(values), 3)
+    other_info['Median'], other_info['Mean / Average'] = round(statistics.median(values), 3), round(statistics.mean(values), 3)
+    other_info['Standard Deviation'] = round(statistics.stdev(values), 3)
     return other_info
 
 def regressCompute(df):
