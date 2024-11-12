@@ -56,7 +56,7 @@ def generate_figure(request):
         fig2.update_layout(legend=dict(
             orientation="h",
             yanchor="bottom",
-            y=-0.5,
+            y=-0.75,
             xanchor="left",
             x=0
         ))
@@ -78,7 +78,7 @@ def generate_figure(request):
         fig2.update_layout(legend=dict(
             orientation="h",
             yanchor="bottom",
-            y=-0.5,
+            y=-0.75,
             xanchor="left",
             x=0
         ))
