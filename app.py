@@ -10,8 +10,6 @@ import statistics
 from statsmodels.tsa.arima.model import ARIMA
 import plotly.graph_objects as go
 
-
-
 #App config
 app = Flask(__name__)
 app.debug = True
@@ -57,7 +55,7 @@ def generate_figure(request):
         fig.update_layout(legend=dict(
             orientation="h",
             yanchor="bottom",
-            y=-0.75,
+            y=-0.35,
             xanchor="left",
             x=0
         ))
@@ -68,7 +66,7 @@ def generate_figure(request):
         fig2.update_layout(legend=dict(
             orientation="h",
             yanchor="bottom",
-            y=-0.75,
+            y=-0.35,
             xanchor="left",
             x=0
         ))
@@ -89,7 +87,7 @@ def generate_figure(request):
         fig.update_layout(legend=dict(
             orientation="h",
             yanchor="bottom",
-            y=-0.75,
+            y=-0.35,
             xanchor="left",
             x=0
         ))
@@ -101,7 +99,7 @@ def generate_figure(request):
         fig2.update_layout(legend=dict(
             orientation="h",
             yanchor="bottom",
-            y=-0.75,
+            y=-0.35,
             xanchor="left",
             x=0
         ))
