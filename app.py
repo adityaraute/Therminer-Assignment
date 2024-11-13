@@ -8,6 +8,8 @@ import numpy as np
 from flask_session import Session
 import statistics
 from statsmodels.tsa.arima.model import ARIMA
+import plotly.graph_objects as go
+
 
 
 #App config
@@ -49,6 +51,9 @@ def generate_figure(request):
 
         # Create a Plotly figure
         fig = px.line(data, x='Time', y='Value', title="Linear Curve Graph", markers = True,  color_discrete_sequence = ['#410292'])
+        fig.for_each_trace(lambda t: t.update(name ="Value"))
+        fig = add_param_traces(fig, other, data['Time'])
+        fig.update_traces(showlegend = True)
 
         #Fetch the prediction dataframe
         r = regressCompute(data)
@@ -71,6 +76,9 @@ def generate_figure(request):
 
         # Create a Plotly figure
         fig = px.line(data, x='Time', y='Value', title="Random Curve Graph", markers = True, color_discrete_sequence = ['#a62910'])
+        fig = add_param_traces(fig, other, data['Time'])
+        fig.for_each_trace(lambda t: t.update(name ="Value"))
+        fig.update_traces(showlegend = True)
 
         #Fetch the prediction dataframe
         r = regressCompute(data)
@@ -157,3 +165,16 @@ def regressCompute(df):
     forecast_df = pd.concat([df, forecast_df], sort= False)
 
     return forecast_df
+
+def add_param_traces(fig, other, x_):
+
+    for item in ["Minimum Value", "Maximum Value", "Mean / Average", "Median"]:
+        fig.add_trace(
+        go.Scatter(
+            x=x_,
+            y=[other[item] for _ in range(144)],
+            mode="lines",
+            line=go.scatter.Line(color="lightgrey"),
+            name = item
+        ))
+    return fig
