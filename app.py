@@ -54,6 +54,13 @@ def generate_figure(request):
         fig.for_each_trace(lambda t: t.update(name ="Value"))
         fig = add_param_traces(fig, other, data['Time'])
         fig.update_traces(showlegend = True)
+        fig.update_layout(legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=-0.75,
+            xanchor="left",
+            x=0
+        ))
 
         #Fetch the prediction dataframe
         r = regressCompute(data)
@@ -79,6 +86,14 @@ def generate_figure(request):
         fig.for_each_trace(lambda t: t.update(name ="Value"))
         fig = add_param_traces(fig, other, data['Time'])
         fig.update_traces(showlegend = True)
+        fig.update_layout(legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=-0.75,
+            xanchor="left",
+            x=0
+        ))
+
 
         #Fetch the prediction dataframe
         r = regressCompute(data)
