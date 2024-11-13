@@ -76,8 +76,8 @@ def generate_figure(request):
 
         # Create a Plotly figure
         fig = px.line(data, x='Time', y='Value', title="Random Curve Graph", markers = True, color_discrete_sequence = ['#a62910'])
-        fig = add_param_traces(fig, other, data['Time'])
         fig.for_each_trace(lambda t: t.update(name ="Value"))
+        fig = add_param_traces(fig, other, data['Time'])
         fig.update_traces(showlegend = True)
 
         #Fetch the prediction dataframe
@@ -175,6 +175,7 @@ def add_param_traces(fig, other, x_):
             y=[other[item] for _ in range(144)],
             mode="lines",
             line=go.scatter.Line(color="lightgrey"),
-            name = item
+            name = item,
+            visible="legendonly"
         ))
     return fig
