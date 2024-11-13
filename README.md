@@ -10,6 +10,32 @@ To create a Python - Flask web app with a data analytics page.
 
 ### Changelog
 
+###### v0.4.0
+
+
+<details>
+<summary>Features</summary>
+
+  - Legend repositioned to bottom-left
+  - Parametric traces added to main visualisation
+</details>
+
+
+<details>
+
+  <summary>Scope for Improvement</summary>
+
+  - Prediction Model Accuracy
+  - Responsive Legend for mobile
+  
+</details>
+
+
+<details>
+<summary>Screenshot</summary>
+  
+![image](https://github.com/user-attachments/assets/826c7bff-0925-4b44-a9d4-c995289b62e0)
+</details>
 
 ###### v0.3.0
 
